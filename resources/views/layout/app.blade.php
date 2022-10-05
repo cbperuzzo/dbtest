@@ -1,3 +1,3 @@
-<h1>@yiel('tituloh1')</h1>
+<h1>@yield('tituloh1')</h1>
     <hr>
-<p>@yield('corpo')</p>
+@yield('corpo')

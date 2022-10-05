@@ -1,13 +1,14 @@
 @extends('layout.app')
-@section('tituloh1','listagem de contatos')
+@section('tituloh1','contatos')
 @section('corpo')
-    <h3>listagemd e contatos</h3>
-
+    <h3>listagem e contatos</h3>
+    <ul>
     @foreach($contatos as $contato)
         <ul>
         <li><a href="{{url('contatos/'.$contato->id)}}">{{$contato->nome}}
 
         </a></li>
-        </ul>
+        @endforeach
+    <ul>
 
 @endsection
