@@ -7,5 +7,12 @@
         <li>Cidade: {{$contato->cidade}}</li>
         <li>Estado: {{$contato->estado}}</li>
     </ul>
-    <a href="{{url('contatos')}}">Voltar</a>
+    <a class="btn btn-warning" href="{{$contato->id}}/edit">editar</a>
+    <br>
+    <a class="btn btn-dark" href="{{url('contatos')}}">Voltar</a>
+    
+    {{Form::open(['route' => ['contatos.destroy',$contato->id],'method' => 'DELETE'])}}
+    {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
+    {{Form::close()}}
+
 @endsection

@@ -7,7 +7,6 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <input type="button" class="btn btn-primary" value="novo contato" href="{{redirect('contatos/create')}}">
     <div class="container">
         @yield('content')
     </div>

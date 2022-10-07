@@ -16,9 +16,9 @@
     {{Form::text('cidade','',['class'=>'form-control','required',
     'placeholde'=>'cidade'])}}
 
-    {{Form::submit('salvar',['class'=>'brn btn-default'])}}
+    {{Form::submit('salvar',['class'=>'btn btn-success'])}}
 
-    {{Form::button('cancelar' ,['onclick' => 'javascript:history.go(-1)',
+    {{Form::button('cancelar' ,['onclick' => 'javascript:history.back()',
     'class' => 'btn btn-danger'])}}
 
     {{Form::close()}}

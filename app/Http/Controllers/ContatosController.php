@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Contato;
 
+use Session;
+
 class ContatosController extends Controller
 {
     /**
@@ -66,7 +68,8 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contato = Contato::find($id);
+        return view('contato.edit',array('contato' => $contato));
     }
 
     /**
@@ -78,7 +81,15 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $contato = Contato::find($id);
+        $contato->nome = $request->input('nome');
+        $contato->cidade = $request->input('cidade');
+        $contato->estado = $request->input('estado');
+        if($contato->save()) {
+            return redirect(url('contatos/'.$contato->id));
+        }
+        
     }
 
     /**
@@ -89,6 +100,8 @@ class ContatosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contato = Contato::find($id);
+        $contato->delete();
+        return redirect(url('contatos/'));
     }
 }
