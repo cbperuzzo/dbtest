@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ContatosController;
+
+use App\Http\Controllers\LivrosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +18,5 @@ use App\Http\Controllers\ContatosController;
 */
 
 Route::resource('contatos',ContatosController::class);
+
+Route::resource('livros',LivrosController::class);
