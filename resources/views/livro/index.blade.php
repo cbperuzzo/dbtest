@@ -4,6 +4,10 @@
     
     <h1>Listagem de livros</h1>
 
+    <a href='livros/create'>novo livro</a>
+
+    <hr>
+
     <ul>
         
         @foreach($livros as $livro)

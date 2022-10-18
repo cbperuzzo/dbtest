@@ -2,7 +2,7 @@
 @section('title','novo contato')
 @section('content')
     <h1>novo contato</h1>
-    {{Form::open(['route' => 'contatos.store','method' => 'POST'])}}
+    {{Form::open(['route' => 'contatos.store','method' => 'POST','enctype'=>'multipart/form-data'])}}
 
     {{Form::label('nome','Nome')}}
     {{Form::text('nome','',['class'=>'form-control','required',
