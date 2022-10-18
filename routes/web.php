@@ -6,6 +6,9 @@ use App\Http\Controllers\ContatosController;
 
 use App\Http\Controllers\LivrosController;
 
+use App\Http\Controllers\EmprestimoController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +19,8 @@ use App\Http\Controllers\LivrosController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('emprestimos',EmprestimoController::class);
 
 Route::resource('contatos',ContatosController::class);
 

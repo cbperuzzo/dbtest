@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('idContato');
+            $table->foreign('idContato')->references('id')->on('contatos');
+            $table->unsignedBigInteger('idLivro');
+            $table->foreign('idLivro')->references('id')->on('livros');
+            $table->dateTime('dataHora');
+            $table->dateTime('dataDevolucao');
+            $table->text('obs');
             $table->timestamps();
         });
     }
