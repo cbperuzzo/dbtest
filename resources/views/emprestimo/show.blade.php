@@ -9,16 +9,16 @@
     <h1>{{$emprestimo->id}}</h1>
 
     <ul>
-        <li><strong>id:</strong> {{$emprstimo->id}} </li>
-        <li><strong>autor:</strong> {{$emprestimo->idLivro}} </li>
-        <li><strong>genero:</strong> {{$emprestimo->idContato}} </li>
-        <li><strong>genero:</strong> {{$emprestimo->datahora}} </li>
-        <li><strong>genero:</strong> {{$emprestimo->dataDevolucao}} </li>
+        <li><strong>id:</strong> {{$emprestimo->id}} </li>
+        <li><strong>livro:</strong> {{$emprestimo->Livro->nome}} </li>
+        <li><strong>contato:</strong> {{$emprestimo->contato->nome}} </li>
+        <li><strong>momento 0:</strong> {{$emprestimo->datahora}} </li>
+        <li><strong>data de entrega:</strong> {{$emprestimo->dataDevolucao}} </li>
     </ul>
     <hr>
     <a class="btn btn-warning" href="{{$emprestimo->id}}/edit">editar</a>
     <a class="btn btn-dark" href="/emprestimos">Voltar</a>
-    {{Form::open(['route' => ['emprestimo.destroy',$emprestimo->id],'method' => 'DELETE'])}}
+    {{Form::open(['route' => ['emprestimos.destroy',$emprestimo->id],'method' => 'DELETE'])}}
     {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
     {{Form::close()}}
 

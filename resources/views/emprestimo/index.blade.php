@@ -13,11 +13,12 @@
         @foreach($emprestimo as $emp)
 
             <li>
-                <a href="emprestimos/{{$emp->id}}">{{$emp->idLivro . '--' . $emp->idContato}}</a>
+                <a href="emprestimos/{{$emp->id}}">{{$emp->Livro->nome . '--' . $emp->Contato->nome}}</a>
             </li>
 
         @endforeach
 
     </ul>
+    {{$emprestimo->links()}}
 
 @endsection

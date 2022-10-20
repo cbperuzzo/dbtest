@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Contato;
 
-use Session;
-
 class ContatosController extends Controller
 {
     /**
@@ -17,8 +15,13 @@ class ContatosController extends Controller
      */
     public function index()
     {
-        $contatos = Contato::all();
+        $contatos = Contato::paginate(5);
         return view('contato.index',array('contatos' => $contatos,'busca'=>null));
+    }
+
+    public function buscar(Request $request) {
+        $contatos = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
+        return view('contato.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
     }
 
     /**

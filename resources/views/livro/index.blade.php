@@ -19,5 +19,6 @@
         @endforeach
 
     </ul>
+    {{$livros->links()}}
 
 @endsection

@@ -22,6 +22,7 @@ use App\Http\Controllers\EmprestimoController;
 
 Route::resource('emprestimos',EmprestimoController::class);
 
+Route::get('contatos/buscar',[ContatosController::class,'buscar']);
 Route::resource('contatos',ContatosController::class);
 
 Route::resource('livros',LivrosController::class);

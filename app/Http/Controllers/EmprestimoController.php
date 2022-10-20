@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Emprestimo;
+use App\Models\Contato;
+use App\Models\Livros;
+
 use Illuminate\Http\Request;
 
 class EmprestimoController extends Controller
@@ -11,10 +14,12 @@ class EmprestimoController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+
     public function index()
     {
-        $emprestimo = Emprestimo::all();
+        $emprestimo = Emprestimo::paginate(5);
         return view('emprestimo.index',array('emprestimo'=>$emprestimo));
     }
 
@@ -25,7 +30,9 @@ class EmprestimoController extends Controller
      */
     public function create()
     {
-        return view('emprestimo.create');
+        $contatos=Contato::all();
+        $livros=Livros::all();
+        return view('emprestimo.create',array('contatos'=>$contatos,'livros'=>$livros));
     }
 
     /**
@@ -53,10 +60,10 @@ class EmprestimoController extends Controller
      * @param  \App\Models\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function show(Emprestimo $emprestimo)
+    public function show($id)
     {
-        $emprestim = Emprestimo::find($emprestimo);
-        return view('emprestimo.show', array('emprestimo'=>$emprestim));
+        $id = Emprestimo::find($id);
+        return view('emprestimo.show', array('emprestimo'=>$id));
     }
 
     /**
@@ -88,7 +95,7 @@ class EmprestimoController extends Controller
      * @param  \App\Models\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Emprestimo $emprestimo)
+    public function destroy(Emprestimo $id)
     {
         $emprestimo = Emprestimo::find($id);
         $emprestimo->delete();
