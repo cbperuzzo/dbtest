@@ -21,7 +21,10 @@ class ContatosController extends Controller
 
     public function buscar(Request $request) {
         $contatos = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
-        return view('contato.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
+        if($contatos==null){
+            $contatos = Contato::paginate(5);
+        }
+        return view('contatos.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
     }
 
     /**
