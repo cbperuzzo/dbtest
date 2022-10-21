@@ -13,11 +13,14 @@ class LivrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $busca=null;
+    public function index(){
         $livros =  Livros::simplepaginate(5);
-        return view('livro.index',array('livros'=>$livros,'busca'=>$busca));
+        return view('livro.index',array('livros'=>$livros,'busca'=>null));
+    }
+
+    public function buscar(Request $request) {
+        $livros = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
+        return view('contato.index',array('livros' => $livros,'busca'=>$request->input('busca')));
     }
 
     /**

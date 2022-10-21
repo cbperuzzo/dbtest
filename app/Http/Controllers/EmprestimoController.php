@@ -19,9 +19,13 @@ class EmprestimoController extends Controller
 
     public function index()
     {
-        $busca=null;
         $emprestimo = Emprestimo::paginate(5);
-        return view('emprestimo.index',array('emprestimo'=>$emprestimo,'busca'=>$busca));
+        return view('emprestimo.index',array('emprestimo'=>$emprestimo,'busca'=>null));
+    }
+
+    public function buscar(Request $request) {
+        $contatos = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
+        return view('contato.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
     }
 
     /**
