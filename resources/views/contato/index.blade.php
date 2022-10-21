@@ -21,6 +21,7 @@
             </div>
         </div>
     {{Form::close()}}
+    <hr>
     <ul>
     @foreach ($contatos as $contato)
        <li>
@@ -28,5 +29,5 @@
         </li>
     @endforeach
     </ul>
-    <!--{{$contatos->links()}}-->
+    
 @endsection

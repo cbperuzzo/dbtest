@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Contato;
 use App\models\Livro;
 
+define('PRAZO_EMPRESTIMO',15);
+
 class Emprestimo extends Model
 {
     /*
@@ -36,6 +38,13 @@ class Emprestimo extends Model
     public function livro(){
          return $this->belongsTo(livros::class,'idLivro','id');
         
+    }
+    public function getDevolvidoAttribute() {
+        // Usando assessador
+        $prazodevolucao = \Carbon\Carbon::create($this->dataHora)->addDays(PRAZO_EMPRESTIMO);
+        $atrasado = $prazodevolucao < \Carbon\Carbon::now()?" - Atrasado":"";
+        $devolvido = $this->dataDevolucao == null?"Previsto: ".$prazodevolucao->format('d/m/Y').$atrasado:\Carbon\Carbon::create($this->datadevolucao)->format('d/m/Y H:i:s') . " - entregue";
+        return $devolvido;
     }
     
 }

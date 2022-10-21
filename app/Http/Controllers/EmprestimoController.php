@@ -19,8 +19,9 @@ class EmprestimoController extends Controller
 
     public function index()
     {
+        $busca=null;
         $emprestimo = Emprestimo::paginate(5);
-        return view('emprestimo.index',array('emprestimo'=>$emprestimo));
+        return view('emprestimo.index',array('emprestimo'=>$emprestimo,'busca'=>$busca));
     }
 
     /**
@@ -33,6 +34,13 @@ class EmprestimoController extends Controller
         $contatos=Contato::all();
         $livros=Livros::all();
         return view('emprestimo.create',array('contatos'=>$contatos,'livros'=>$livros));
+    }
+
+    public function devolver($id){
+        $emprestimo = Emprestimo::find($id);
+        $emprestimo->datadevolucao = \Carbon\Carbon::now();
+        $emprestimo->save();
+        return redirect('emprestimos/'.$id);
     }
 
     /**
@@ -95,9 +103,9 @@ class EmprestimoController extends Controller
      * @param  \App\Models\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Emprestimo $id)
+    public function destroy($id)
     {
-        $emprestimo = Emprestimo::find($id);
+        $emprestimo=Emprestimo::find($id);
         $emprestimo->delete();
         return redirect(url('emprestimos'));
     }

@@ -15,8 +15,9 @@ class LivrosController extends Controller
      */
     public function index()
     {
+        $busca=null;
         $livros =  Livros::simplepaginate(5);
-        return view('livro.index',array('livros'=>$livros));
+        return view('livro.index',array('livros'=>$livros,'busca'=>$busca));
     }
 
     /**

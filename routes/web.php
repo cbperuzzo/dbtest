@@ -23,6 +23,7 @@ use App\Http\Controllers\EmprestimoController;
 Route::resource('emprestimos',EmprestimoController::class);
 
 Route::get('contatos/buscar',[ContatosController::class,'buscar']);
+Route::put('emprestimos/{emprestimo}/devolver',[EmprestimoController::class,'devolver'])->name('emprestimos.devolver');
 Route::resource('contatos',ContatosController::class);
 
 Route::resource('livros',LivrosController::class);

@@ -28,10 +28,6 @@
     {{Form::text('datahora',\Carbon\Carbon::now()->format('d/m/Y H:i:s'),
     ['class'=>'form-control','required','placeholder'=>'Data','rows'=>'8'])}}
 
-    data de devolução:
-    {{Form::date('dataDevolucao','',['class'=>'form-control','required',
-    'placeholde'=>'data'])}}
-
     observação:
     {{Form::text('obs','',['class'=>'form-control','required',
     'placeholde'=>'obs','list'=>'listcontatos'])}}
