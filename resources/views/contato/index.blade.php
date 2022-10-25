@@ -2,7 +2,7 @@
 @section('title','Listagem de Contatos')
 @section('content')
     <h1>Listagem de Contatos</h1>
-    {{Form::open(['url'=>'contatos/buscar','method'=>'GET'])}}
+    {{Form::open(['url'=>'contatos/buscar/ns','method'=>'GET'])}}
         <div class="row">
             <div class="col-sm-3">
                 <a class="btn btn-success" href="{{url('contatos/create')}}">Criar</a>

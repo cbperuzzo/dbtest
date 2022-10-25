@@ -24,8 +24,8 @@ class EmprestimoController extends Controller
     }
 
     public function buscar(Request $request) {
-        $contatos = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
-        return view('contato.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
+        $emprestimo = Emprestimo::where('id','LIKE','%'.$request->input('busca').'%')->get();
+        return view('emprestimo.index',array('emprestimo' => $emprestimo,'busca'=>$request->input('busca')));
     }
 
     /**

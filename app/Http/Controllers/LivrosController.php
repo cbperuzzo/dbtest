@@ -19,8 +19,8 @@ class LivrosController extends Controller
     }
 
     public function buscar(Request $request) {
-        $livros = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
-        return view('contato.index',array('livros' => $livros,'busca'=>$request->input('busca')));
+        $livros = Livros::where('nome','LIKE','%'.$request->input('busca').'%')->get();
+        return view('livro.index',array('livros' => $livros,'busca'=>$request->input('busca')));
     }
 
     /**
@@ -59,7 +59,7 @@ class LivrosController extends Controller
     public function show($id)
     {
         $livro = Livros::find($id);
-        return view('livro.show',array('livro'=>$livro));
+        return view('livro.index',array('livro'=>$livro));
     }
 
     /**

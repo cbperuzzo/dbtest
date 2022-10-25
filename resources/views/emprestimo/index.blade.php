@@ -3,7 +3,7 @@
 @section('content')
     
     <h1>Listagem de Emprestimos</h1>
-    {{Form::open(['url'=>'livros/buscar','method'=>'GET'])}}
+    {{Form::open(['url'=>'emprestimos/buscar/ns','method'=>'GET'])}}
         <div class="row">
             <div class="col-sm-3">
                 <a class="btn btn-success" href="{{url('emprestimos/create')}}">Criar</a>
@@ -35,6 +35,6 @@
         @endforeach
 
     </ul>
-    {{$emprestimo->links()}}
+    
 
 @endsection
