@@ -1,5 +1,5 @@
-@extends('layout.app')
-@section('title','listagem de livros')
+@extends('layouts.app')
+
 @section('content')
     
     <h1>Listagem de livros</h1>

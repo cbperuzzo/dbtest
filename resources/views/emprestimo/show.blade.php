@@ -1,8 +1,4 @@
-@extends('layout.app')
-
-@section('title')
-    {{$emprestimo->id}}
-@endsection
+@extends('layouts.app')
 
 @section('content')
 

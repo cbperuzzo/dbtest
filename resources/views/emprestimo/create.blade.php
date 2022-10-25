@@ -1,5 +1,4 @@
-@extends('layout.app')
-@section('title','novo contato')
+@extends('layouts.app')
 @section('content')
     <h1>novo contato</h1>
     {{Form::open(['route' => 'emprestimos.store','method' => 'POST'])}}

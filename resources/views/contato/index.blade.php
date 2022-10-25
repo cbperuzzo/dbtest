@@ -1,5 +1,4 @@
-@extends('layout.app')
-@section('title','Listagem de Contatos')
+@extends('layouts.app')
 @section('content')
     <h1>Listagem de Contatos</h1>
     {{Form::open(['url'=>'contatos/buscar/ns','method'=>'GET'])}}

@@ -1,5 +1,4 @@
-@extends('layout.app')
-@section('title','Contato - {{$contato->nome}}')
+@extends('layouts.app')
 @section('content')
     <h1>Contato - {{$contato->nome}}</h1>
     <ul>

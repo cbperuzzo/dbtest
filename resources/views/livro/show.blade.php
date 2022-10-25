@@ -1,8 +1,4 @@
-@extends('layout.app')
-
-@section('title')
-    {{$livro->nome}}
-@endsection
+@extends('layouts.app')
 
 @section('content')
 

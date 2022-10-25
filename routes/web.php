@@ -29,6 +29,7 @@ Route::put('emprestimos/{emprestimo}/devolver',[EmprestimoController::class,'dev
 
 Route::resource('livros',LivrosController::class);
 Route::get('livros/buscar/ns',[LivrosController::class,'buscar']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
