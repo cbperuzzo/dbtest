@@ -41,10 +41,14 @@ class EmprestimoController extends Controller
     }
 
     public function devolver($id){
-        $emprestimo = Emprestimo::find($id);
-        $emprestimo->datadevolucao = \Carbon\Carbon::now();
-        $emprestimo->save();
-        return redirect('emprestimos/'.$id);
+        if(Auth::check()){
+            $emprestimo = Emprestimo::find($id);
+            $emprestimo->datadevolucao = \Carbon\Carbon::now();
+            $emprestimo->save();
+            return redirect('emprestimos/'.$id);
+        }else{
+            return redirec('login');
+        }    
     }
 
     /**
@@ -78,7 +82,6 @@ class EmprestimoController extends Controller
      */
     public function show($id)
     {
-        
         $id = Emprestimo::find($id);
         return view('emprestimo.show', array('emprestimo'=>$id));
     }
