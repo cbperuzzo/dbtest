@@ -5,9 +5,11 @@
     <h1>Listagem de livros</h1>
     {{Form::open(['url'=>'livros/buscar/ns','method'=>'GET'])}}
         <div class="row">
+            @auth
             <div class="col-sm-3">
                 <a class="btn btn-success" href="{{url('livros/create')}}">Criar</a>
             </div>
+            @endauth
             <div class="col-sm-9">
                 <div class="input-group ml-5">
                     @if($busca !== null)

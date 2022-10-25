@@ -42,12 +42,16 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        $contato = new Contato();
-        $contato->nome = $request->input('nome');
-        $contato->cidade = $request->input('cidade');
-        $contato->estado = $request->input('estado');
-        if($contato->save()) {
-            return redirect('contatos');
+        if(Auth::check()){
+            $contato = new Contato();
+            $contato->nome = $request->input('nome');
+            $contato->cidade = $request->input('cidade');
+            $contato->estado = $request->input('estado');
+            if($contato->save()) {
+                return redirect('contatos');
+            }
+        }else{
+            return redirec('login');
         }
     }
 
@@ -71,8 +75,12 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-        $contato = Contato::find($id);
-        return view('contato.edit',array('contato' => $contato));
+        if(Auth::check()){
+            $contato = Contato::find($id);
+            return view('contato.edit',array('contato' => $contato));
+        }else{
+            return redirec('login');
+        }
     }
 
     /**
@@ -84,13 +92,16 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $contato = Contato::find($id);
-        $contato->nome = $request->input('nome');
-        $contato->cidade = $request->input('cidade');
-        $contato->estado = $request->input('estado');
-        if($contato->save()) {
-            return redirect(url('contatos/'.$contato->id));
+        if(Auth::check()){
+            $contato = Contato::find($id);
+            $contato->nome = $request->input('nome');
+            $contato->cidade = $request->input('cidade');
+            $contato->estado = $request->input('estado');
+            if($contato->save()) {
+                return redirect(url('contatos/'.$contato->id));
+            }
+        }else{
+            return redirec('login');
         }
         
     }
@@ -103,8 +114,12 @@ class ContatosController extends Controller
      */
     public function destroy($id)
     {
-        $contato = Contato::find($id);
-        $contato->delete();
-        return redirect(url('contatos/'));
+        if(Auth::check()){
+            $contato = Contato::find($id);
+            $contato->delete();
+            return redirect(url('contatos/'));
+        }else{
+            return redirec('login');
+        }
     }
 }

@@ -12,15 +12,19 @@
         <li><strong>entrega:</strong> {!!$emprestimo->devolvido!!}</td></li>
     </ul>
     <hr>
+    @auth
     @if($emprestimo->dataDevolucao==null)
         {{Form::open(['route'=>['emprestimos.devolver',$emprestimo->id],'method'=>'PUT'])}}
         {{form::submit('Devolver',['class'=>'btn btn-success','onclick'=>'return confim("Confirma devolução?")'])}}
         {{Form::close()}}
     @endif
     <a class="btn btn-warning" href="{{$emprestimo->id}}/edit">editar</a>
+    @endauth
     <a class="btn btn-dark" href="/emprestimos">Voltar</a>
+    @auth
     {{Form::open(['route' => ['emprestimos.destroy',$emprestimo->id],'method' => 'DELETE'])}}
     {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
     {{Form::close()}}
+    @endauth
 
 @endsection

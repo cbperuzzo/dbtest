@@ -41,12 +41,16 @@ class LivrosController extends Controller
      */
     public function store(Request $request)
     {
-        $livro = new Livros();
-        $livro->nome = $request->input('nome');
-        $livro->genero = $request->input('genero');
-        $livro->autor = $request->input('autor');
-        if($livro->save()) {
-            return redirect('contatos');
+        if(Auth::check()){
+            $livro = new Livros();
+            $livro->nome = $request->input('nome');
+            $livro->genero = $request->input('genero');
+            $livro->autor = $request->input('autor');
+            if($livro->save()) {
+                return redirect('contatos');
+            }
+        }else{
+            return redirec('login');
         }
     }
 
@@ -70,8 +74,12 @@ class LivrosController extends Controller
      */
     public function edit($id)
     {
-        $livro = Livros::find($id);
-        return view('livro.edit',array('livro'=>$livro));
+        if(Auth::check()){
+            $livro = Livros::find($id);
+            return view('livro.edit',array('livro'=>$livro));
+        }else{
+            return redirec('login');
+        }
     }
 
     /**
@@ -83,12 +91,16 @@ class LivrosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $livro = Livros::find($id);
-        $livro->autor = $request->input('autor');
-        $livro->nome = $request->input('nome');
-        $livro->genero = $request->input('genero');
-        if($livro->save()){
-            return redirect('/livros');
+        if(Auth::check()){
+            $livro = Livros::find($id);
+            $livro->autor = $request->input('autor');
+            $livro->nome = $request->input('nome');
+            $livro->genero = $request->input('genero');
+            if($livro->save()){
+                return redirect('/livros');
+            }
+        }else{
+            return redirec('login');
         }
     }
 
@@ -100,8 +112,12 @@ class LivrosController extends Controller
      */
     public function destroy($id)
     {
-        $livro = Livros::find($id);
-        $livro->delete();
-        return redirect(url('livros/'));
+        if(Auth::check()){
+            $livro = Livros::find($id);
+            $livro->delete();
+            return redirect(url('livros/'));
+        }else{
+            return redirec('login');
+        }
     }
 }

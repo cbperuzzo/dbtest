@@ -18,12 +18,14 @@
             </ul>
         @endforeach
         <hr>
+    @auth 
     <a class="btn btn-warning" href="{{$contato->id}}/edit">editar</a>
     <br>
+    @endauth
     <a class="btn btn-dark" href="{{url('contatos')}}">Voltar</a>
-    
+    @auth
     {{Form::open(['route' => ['contatos.destroy',$contato->id],'method' => 'DELETE'])}}
     {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
     {{Form::close()}}
-
+    @endauth
 @endsection

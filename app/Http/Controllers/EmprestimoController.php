@@ -55,14 +55,18 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        $emprestimo = new Emprestimo();
-        $emprestimo->idLivro = $request->input('idLivro');
-        $emprestimo->idContato = $request->input('idContato');
-        $emprestimo->dataHora = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$request->input('datahora'));
-        $emprestimo->dataDevolucao = null;
-        $emprestimo->obs = $request->input('obs');
-        if($emprestimo->save()){
-            return redirect('emprestimos');
+        if(Auth::check()){
+            $emprestimo = new Emprestimo();
+            $emprestimo->idLivro = $request->input('idLivro');
+            $emprestimo->idContato = $request->input('idContato');
+            $emprestimo->dataHora = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$request->input('datahora'));
+            $emprestimo->dataDevolucao = null;
+            $emprestimo->obs = $request->input('obs');
+            if($emprestimo->save()){
+                return redirect('emprestimos');
+            }
+        }else{
+            return redirec('login');
         }
     }
 
@@ -74,6 +78,7 @@ class EmprestimoController extends Controller
      */
     public function show($id)
     {
+        
         $id = Emprestimo::find($id);
         return view('emprestimo.show', array('emprestimo'=>$id));
     }
@@ -109,8 +114,12 @@ class EmprestimoController extends Controller
      */
     public function destroy($id)
     {
-        $emprestimo=Emprestimo::find($id);
-        $emprestimo->delete();
-        return redirect(url('emprestimos'));
+        if(Auth::check()){
+            $emprestimo=Emprestimo::find($id);
+            $emprestimo->delete();
+            return redirect(url('emprestimos'));
+        }else{
+            return redirec('login');
+        }
     }
 }
