@@ -8,11 +8,11 @@
             <div class="col-sm-3">
                 <a class="btn btn-success" href="{{url('emprestimos/create')}}">Criar</a>
             </div>
-            @endid
+            @endif
             <div class="col-sm-9">
                 <div class="input-group ml-5">
                     @if($busca !== null)
-                        &nbsp;<a class="btn btn-info" href="{{url('emprestimos/')}}">Todos</a>&nbsp;
+                        &nbsp;<a class="btn btn-info" href="{{url('/emprestimos/')}}">Todos</a>&nbsp;
                     @endif
                     {{Form::text('busca',$busca,['class'=>'form-control','required','placeholder'=>'buscar'])}}
                     &nbsp;
@@ -30,7 +30,7 @@
         @foreach($emprestimo as $emp)
 
             <li>
-                <a href="emprestimos/{{$emp->id}}">{{$emp->id}}</a> - {{'"'.$emp->Livro->nome .'"' . ' alugado por: ' . $emp->Contato->nome}}
+                <a href="/emprestimos/{{$emp->id}}">{{$emp->id}}</a> - {{'"'.$emp->Livro->nome .'"' . ' alugado por: ' . $emp->Contato->nome}}
             </li>
 
         @endforeach

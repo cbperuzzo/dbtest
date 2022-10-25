@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Livros;
+use App\Models\Emprestimo;
+use App\Models\Contato;
+
 class HomeController extends Controller
 {
     /**
@@ -22,7 +26,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $livros = Livros::count(); 
+        $emp = Emprestimo::count();
+        $contatos = Contato::count();
+        return view('home',array('nlivros'=>$livros,'nemprestimos'=>$emp,'ncontatos'=>$contatos));
     }
 }

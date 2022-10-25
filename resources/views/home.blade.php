@@ -15,6 +15,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <ul>
+                        <li><strong>livros: </strong>{{$nlivros}}</li>
+                        <li><strong>contatos: </strong>{{$ncontatos}}</li>
+                        <li><strong>emprestimos: </strong>{{$nemprestimos}}</li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -8,6 +8,8 @@ use App\Http\Controllers\LivrosController;
 
 use App\Http\Controllers\EmprestimoController;
 
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +34,12 @@ Route::get('livros/buscar/ns',[LivrosController::class,'buscar']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('',[HomeController::class, 'index'])->name('home');
 
 Route::get('contatos/buscar/ns',[ContatosController::class,'buscar']);
 
 
-Route::get('',function(){
-    return redirect('home');
-});
 
 
