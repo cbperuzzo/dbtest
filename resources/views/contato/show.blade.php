@@ -18,14 +18,14 @@
             </ul>
         @endforeach
         <hr>
-    @auth 
+    @if(Auth::check() && Auth::user()->isAdmin())
     <a class="btn btn-warning" href="{{$contato->id}}/edit">editar</a>
     <br>
-    @endauth
+    @endif
     <a class="btn btn-dark" href="{{url('contatos')}}">Voltar</a>
-    @auth
+    @if(Auth::check() && Auth::user()->isAdmin())
     {{Form::open(['route' => ['contatos.destroy',$contato->id],'method' => 'DELETE'])}}
     {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
     {{Form::close()}}
-    @endauth
+    @endif
 @endsection

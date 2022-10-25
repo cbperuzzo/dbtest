@@ -21,11 +21,15 @@
             </ul>
     @endforeach
     <hr>
+    @if(Auth::check() && Auth::user()->isAdmin())
     <a class="btn btn-warning" href="{{$livro->id}}/edit">editar</a>
+    @endif
     <a class="btn btn-dark" href="/livros">Voltar</a>
+    @if(Auth::check() && Auth::user()->isAdmin())
     {{Form::open(['route' => ['livros.destroy',$livro->id],'method' => 'DELETE'])}}
     {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
     {{Form::close()}}
+    @endif
 
 
 @endsection

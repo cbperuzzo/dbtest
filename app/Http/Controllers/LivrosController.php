@@ -41,7 +41,7 @@ class LivrosController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $livro = new Livros();
             $livro->nome = $request->input('nome');
             $livro->genero = $request->input('genero');
@@ -74,7 +74,7 @@ class LivrosController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $livro = Livros::find($id);
             return view('livro.edit',array('livro'=>$livro));
         }else{
@@ -91,7 +91,7 @@ class LivrosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $livro = Livros::find($id);
             $livro->autor = $request->input('autor');
             $livro->nome = $request->input('nome');
@@ -112,7 +112,7 @@ class LivrosController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $livro = Livros::find($id);
             $livro->delete();
             return redirect(url('livros/'));

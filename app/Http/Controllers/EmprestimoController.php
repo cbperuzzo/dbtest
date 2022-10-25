@@ -59,7 +59,7 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $emprestimo = new Emprestimo();
             $emprestimo->idLivro = $request->input('idLivro');
             $emprestimo->idContato = $request->input('idContato');
@@ -117,7 +117,7 @@ class EmprestimoController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $emprestimo=Emprestimo::find($id);
             $emprestimo->delete();
             return redirect(url('emprestimos'));

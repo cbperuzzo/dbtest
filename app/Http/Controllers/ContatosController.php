@@ -20,8 +20,13 @@ class ContatosController extends Controller
     }
 
     public function buscar(Request $request) {
-        $contatos = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
-        return view('contato.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
+        if(Auth::check() && Auth::user()->isAdmin()){
+            $contatos = Contato::where('nome','LIKE','%'.$request->input('busca').'%')->get();
+            return view('contato.index',array('contatos' => $contatos,'busca'=>$request->input('busca')));
+        }
+        else{
+            return redirect('login');
+        }
     }
 
     /**
@@ -42,7 +47,7 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $contato = new Contato();
             $contato->nome = $request->input('nome');
             $contato->cidade = $request->input('cidade');
@@ -75,7 +80,7 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->isAdmin()){
             $contato = Contato::find($id);
             return view('contato.edit',array('contato' => $contato));
         }else{
@@ -92,7 +97,7 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::check()){
+        if(Auth::check()  && Auth::user()->isAdmin()){
             $contato = Contato::find($id);
             $contato->nome = $request->input('nome');
             $contato->cidade = $request->input('cidade');
