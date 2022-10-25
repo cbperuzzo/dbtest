@@ -33,3 +33,12 @@ Route::get('livros/buscar/ns',[LivrosController::class,'buscar']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('contatos/buscar/ns',[ContatosController::class,'buscar']);
+
+
+Route::get('',function(){
+    return redirect('home');
+});
+
+
