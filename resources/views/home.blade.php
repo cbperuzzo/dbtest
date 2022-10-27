@@ -21,6 +21,12 @@
                         <li><strong>contatos: </strong>{{$ncontatos}}</li>
                         <li><strong>emprestimos: </strong>{{$nemprestimos}}</li>
                     </ul>
+                    <h4>emprestimos a serem devolvidos</h4>
+                    <ul>
+                    @foreach($empdev as $emprow)
+                        <li><strong>{{$emprow->id}} - </strong/>contato:{{$emprow->Contato->nome}} - livro:{{$emprow->livro->nome}}</li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

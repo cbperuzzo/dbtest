@@ -30,6 +30,7 @@ class HomeController extends Controller
         $livros = Livros::count(); 
         $emp = Emprestimo::count();
         $contatos = Contato::count();
-        return view('home',array('nlivros'=>$livros,'nemprestimos'=>$emp,'ncontatos'=>$contatos));
+        $empdev = Emprestimo::where('datadevolucao','=',NULL)->get();
+        return view('home',array('nlivros'=>$livros,'nemprestimos'=>$emp,'ncontatos'=>$contatos, 'empdev'=>$empdev));
     }
 }
